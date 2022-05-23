@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "places",
+  "info": {
+    "singularName": "place",
+    "pluralName": "places",
+    "displayName": "Place",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "Picture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "places"
+    },
+    "cats": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::cat.cat",
+      "mappedBy": "places"
+    },
+    "user_details": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::user-detail.user-detail",
+      "mappedBy": "places"
+    },
+    "json": {
+      "type": "json"
+    }
+  }
+}
