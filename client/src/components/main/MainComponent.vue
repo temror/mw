@@ -2,50 +2,105 @@
   <div class="main">
     <div class="container">
       <div class="main__content">
-        <div class="main__title">Решает вечную проблему,
-          куда же пойти погулять
+        <div class="main__title">
+          Решает вечную проблему, куда же пойти погулять
         </div>
-        <div class="main__subtitle">Ваш персональный гид по Москве, рассказывающий всякое интересное</div>
-        <button class="main__register" @click="$router.push('/auth')">Зарегистрироваться</button>
+        <div class="main__subtitle">
+          Ваш персональный гид по Москве, рассказывающий всякое интересное
+        </div>
+        <button class="main__register" @click="$router.push('/auth')">
+          Зарегистрироваться
+        </button>
         <a href="#" class="main__login">Уже есть аккаунт? Войдите</a>
-        <img src="@/assets/banner.png" alt="banner" class="main__banner">
+        <img src="@/assets/banner.png" alt="banner" class="main__banner" />
         <div class="main__itemsTitle">
-          Сделйте ваши прогулки интересными,
-          как никогда
+          Сделйте ваши прогулки интересными, как никогда
         </div>
         <div class="main__itemsArea">
           <div class="main__item">
-            <img src="@/assets/icon-random.svg" alt="">
+            <img src="@/assets/icon-random.svg" alt="" />
             <h1>Случайное место</h1>
             <p>Постоянно исследуйте новые улицы, парки, районы, площади...</p>
-            <button class="main__learnMore" @click="$router.push('/main/random')">Подробнее</button>
+            <button
+              class="main__learnMore"
+              @click="$router.push('/main/random')"
+            >
+              Подробнее
+            </button>
           </div>
           <div class="main__item">
-            <img src="@/assets/icon-info.svg" alt="">
+            <img src="@/assets/icon-info.svg" alt="" />
             <h1>Информация</h1>
-            <p>Читайте интересные факты истории и узнавайте современные точки притяжения</p>
-            <button class="main__learnMore" @click="$router.push('/main/info')">Подробнее</button>
+            <p>
+              Читайте интересные факты истории и узнавайте современные точки
+              притяжения
+            </p>
+            <button class="main__learnMore" @click="$router.push('/main/info')">
+              Подробнее
+            </button>
           </div>
           <div class="main__item">
-            <img src="@/assets/icon-list.svg" alt="">
+            <img src="@/assets/icon-list.svg" alt="" />
             <h1>Список мест</h1>
-            <p>Сохраняйте места, в которых вы побывали, а также составляйте список желаний для ближайших прогулок</p>
-            <button class="main__learnMore" @click="$router.push('/main/places')">Подробнее</button>
+            <p>
+              Сохраняйте места, в которых вы побывали, а также составляйте
+              список желаний для ближайших прогулок
+            </p>
+            <button
+              class="main__learnMore"
+              @click="$router.push('/main/places')"
+            >
+              Подробнее
+            </button>
           </div>
         </div>
-        <article class="main__article"><span style="font-weight: bold; color: #46865C; font-size: 30px">Иди!</span> - это сервис для тех, кто много гуляет. Или хотел бы много гулять. <br><br>
+        <article class="main__article">
+          <span style="font-weight: bold; color: #46865c; font-size: 30px"
+            >Иди!</span
+          >
+          - это сервис для тех, кто много гуляет. Или хотел бы много гулять.
+          <br /><br />
 
-          Я часто сталкивался с проблемой, что люди, живущие всю жизнь в Москве, совершенно не знают свой город. Слова вроде “Крутицкое подворье” или “Хохловка” часто вызывают недоумение, а диапазон прогулок ограничивается Новым Арбатом и Тверской.
-          <br><br>
+          Я часто сталкивался с проблемой, что люди, живущие всю жизнь в Москве,
+          совершенно не знают свой город. Слова вроде “Крутицкое подворье” или
+          “Хохловка” часто вызывают недоумение, а диапазон прогулок
+          ограничивается Новым Арбатом и Тверской.
+          <br /><br />
 
-          Для туристов или ребят, только что переехавших из других городов, Москва вообще кажется большим клубком из дорог, подземных переходов и серых пятиэтажек.
-          <br><br>
-          Мне бы очень хотелось изменить такой порядок вещей и рассказать, в каком чудесном, разнообразном и потрясающем городе мы живем.
-          <br><br>
-          Основная идея проекта такая: сервис выбирает для вас какое-нибудь место из составленного мной списка, рассказывает о его истории, что там интересного и как туда добраться. После посещения вы сохраняете его себе в “Коллекцию”.
-          <br><br>
-          Попробуем?)</article>
+          Для туристов или ребят, только что переехавших из других городов,
+          Москва вообще кажется большим клубком из дорог, подземных переходов и
+          серых пятиэтажек.
+          <br /><br />
+          Мне бы очень хотелось изменить такой порядок вещей и рассказать, в
+          каком чудесном, разнообразном и потрясающем городе мы живем.
+          <br /><br />
+          Основная идея проекта такая: сервис выбирает для вас какое-нибудь
+          место из составленного мной списка, рассказывает о его истории, что
+          там интересного и как туда добраться. После посещения вы сохраняете
+          его себе в “Коллекцию”.
+          <br /><br />
+          Попробуем?)
+        </article>
         <GoComponent @click="$router.push('/auth')">ИДИ!</GoComponent>
+        <ul>
+          <li v-for="user in state.users">
+            {{ user.id }}: {{ user.name }} {{ user.surname }}
+            <button
+              @click="
+                () => {
+                  delUser(user.id);
+                }
+              "
+            >
+              Удалить
+            </button>
+          </li>
+        </ul>
+        <input type="text" v-model="state.name" /><input
+          type="text"
+          v-model="state.surname"
+        />
+        <button @click="addUser">Добавить</button>
       </div>
     </div>
   </div>
@@ -53,10 +108,16 @@
 
 <script setup>
 import axios from "axios";
-import {useStore} from "@/stores/counter";
+import { useStore } from "@/stores/counter";
 import GoComponent from "@/components/main/GoComponent";
+import { onMounted, reactive } from "vue";
 
 const store = useStore();
+const state = reactive({
+  users: [],
+  name: "",
+  surname: "",
+});
 
 const getPlases = async () => {
   const res = await axios.get("/api/places", {
@@ -67,11 +128,35 @@ const getPlases = async () => {
   store.places = res.data.data;
   console.log(res);
 };
+
+const delUser = async (id) => {
+  await axios.delete(`/api/user/${id}`);
+  await getUsers();
+};
+
+const getUsers = async () => {
+  const users = await axios.get("/api/users");
+  state.users = users.data;
+};
+
+const addUser = async () => {
+  await axios.post("/api/user", {
+    name: state.name,
+    surname: state.surname,
+  });
+  state.name = ''
+  state.surname = ''
+  await getUsers();
+};
+
+onMounted(async () => {
+  await getUsers();
+});
 </script>
 
 <style lang="scss" scoped>
 .main {
-  background-color: #FEFEFE;
+  background-color: #fefefe;
 
   &__content {
     display: flex;
@@ -104,12 +189,13 @@ const getPlases = async () => {
     padding: 15px 40px;
     font-family: "Roboto Light", sans-serif;
     font-size: 25px;
-    background-color: #4CA24C;
+    background-color: #4ca24c;
     border: none;
-    color: #FEFEFE;
+    color: #fefefe;
     cursor: pointer;
   }
-  &__register:hover{
+
+  &__register:hover {
     opacity: 0.8;
     transition: 0.1s;
   }
@@ -127,7 +213,7 @@ const getPlases = async () => {
 
   &__itemsTitle {
     font-family: "Roboto Regular", sans-serif;
-    color: #36463B;
+    color: #36463b;
     font-size: 40px;
     text-align: center;
     max-width: 700px;
@@ -148,12 +234,14 @@ const getPlases = async () => {
     flex-direction: column;
     align-items: center;
     transition: 0.3s;
-    box-shadow: 0 0 1px rgba(0,0,0,0.2);
-    &:hover{
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+
+    &:hover {
       transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       transition: 0.3s;
     }
+
     img {
       height: 150px;
       margin: 50px 0;
@@ -176,7 +264,8 @@ const getPlases = async () => {
       max-width: 230px;
       color: #7a7a7a;
     }
-    button{
+
+    button {
       border: none;
       background: none;
       justify-self: flex-end;
@@ -188,21 +277,23 @@ const getPlases = async () => {
       padding: 15px;
       font-family: "Roboto Light", sans-serif;
       font-size: 18px;
-      color: #46865C;
+      color: #46865c;
       cursor: pointer;
       transition: 0.3s;
-      box-shadow: 0 0 1px rgba(0,0,0,0.2);
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
     }
-    button:hover{
-      background-color: #46865C;
-      border-top: 1px solid #46865C;
-      color: #FEFEFE;
+
+    button:hover {
+      background-color: #46865c;
+      border-top: 1px solid #46865c;
+      color: #fefefe;
       transition: 0.3s;
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
     }
   }
-  &__article{
+
+  &__article {
     line-height: 135%;
     font-family: "Roboto Regular", sans-serif;
     font-size: 25px;
@@ -210,18 +301,22 @@ const getPlases = async () => {
     margin: 100px 0 20px 0;
     color: #6c6c6c;
   }
-  &__go{
+
+  &__go {
     width: 300px;
     animation: go 4s infinite linear;
   }
-  &__go_reverse{
+
+  &__go_reverse {
     transform: rotate(180deg);
     animation: go 5s infinite reverse linear 2s;
   }
-  &__go_three{
-    animation: go 7s infinite linear 1s
+
+  &__go_three {
+    animation: go 7s infinite linear 1s;
   }
-  &__gobtn{
+
+  &__gobtn {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -230,10 +325,12 @@ const getPlases = async () => {
     height: 400px;
     position: relative;
     margin-top: 50px;
-    *{
+
+    * {
       position: absolute;
     }
-    h1{
+
+    h1 {
       z-index: 1000;
       font-family: "Roboto Light", sans-serif;
       font-weight: lighter;
@@ -241,20 +338,22 @@ const getPlases = async () => {
       font-size: 70px;
       margin-top: 100px;
     }
-    &:hover{
+
+    &:hover {
       transform: scale(1.02);
       transition: 0.4s;
     }
   }
 }
+
 @keyframes go {
-  0%{
+  0% {
     transform: rotate(0deg);
   }
-  50%{
+  50% {
     transform: rotate(180deg) scale(1.1);
   }
-  100%{
+  100% {
     transform: rotate(360deg);
   }
 }

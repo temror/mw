@@ -4,14 +4,12 @@ class USerController {
     async createUser(req, res) {
         const {name, surname} = req.body
         const newPerson = await db.query('INSERT INTO person (name,surname) values ($1,$2) RETURNING *', [name,surname])
-        console.log(name, surname)
-        res.json(newPerson)
+        res.json(newPerson.rows)
     }
 
     async getUsers(req, res) {
-        res.json({
-            "hi": "Bye"
-        })
+        const users = await db.query('SELECT * from person')
+        res.json(users.rows)
     }
 
     async getUSer(req, res) {
@@ -23,7 +21,9 @@ class USerController {
     }
 
     async deleteUser(req, res) {
-
+        const id = req.params.id
+        const delUser = await db.query(`DELETE FROM person WHERE id = ${id}`)
+        res.json(delUser.rows)
     }
 }
 

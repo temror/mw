@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <MainComponent v-if="!storage.email"/>
+    <MainComponent v-if="!storage.email" />
     <div class="main__go" v-if="storage.email">
       <h1>Что ж, начнем?</h1>
       <GoComponent @click="me">СТОЙ!</GoComponent>
@@ -11,13 +11,13 @@
 
 <script setup>
 import MainComponent from "@/components/main/MainComponent";
-import {computed, reactive} from "vue";
+import { computed, reactive } from "vue";
 import GoComponent from "@/components/main/GoComponent";
 import axios from "axios";
 
 const state = reactive({
   cats: [],
-})
+});
 
 const storage = computed(() => {
   return localStorage;
@@ -28,29 +28,31 @@ const places = async () => {
     return Math.floor(Math.random() * max);
   }
 
-  const res = await axios.get(`/api/places?populate=*&filters[$or][0][user_details][email][$null]=${storage.value.email}&filters[$or][1][user_details][email][$ne]=${storage.value.email}`);
-  state.cats = res.data.data[getRandomInt(res.data.data.length)]
+  const res = await axios.get(
+    `/api/places?populate=*&filters[$or][0][user_details][email][$null]=${storage.value.email}&filters[$or][1][user_details][email][$ne]=${storage.value.email}`
+  );
+  state.cats = res.data.data[getRandomInt(res.data.data.length)];
 };
 
 const me = async () => {
-  const res = await axios.get('/api/user-details/6?populate=cats')
-  const data = res.data.data.attributes.cats.data
+  const res = await axios.get("/api/user-details/6?populate=cats");
+  const data = res.data.data.attributes.cats.data;
   const ids = data.map((data) => data.id);
   state.cats = ids;
-  state.cat = state.cats.length + 1
+  state.cat = state.cats.length + 1;
   state.cats.push(Number(state.cat));
-  console.log(state.cats.join(","))
-}
+  console.log(state.cats.join(","));
+};
 
 const put = async () => {
-  await me()
-  const res = await axios.put('/api/user-details/6', {
+  await me();
+  const res = await axios.put("/api/user-details/6", {
     data: {
       cats: state.cats,
-    }
-  })
-  console.log(res)
-}
+    },
+  });
+  console.log(res);
+};
 </script>
 
 <style lang="scss" scoped>

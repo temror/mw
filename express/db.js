@@ -4,6 +4,6 @@ const pool = new  Pool({
     password: 'root',
     host: 'localhost',
     port:  '5432',
-    data: 'new_db'
+    database: 'new_db'
 })
 module.exports = pool

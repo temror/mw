@@ -22,7 +22,7 @@ export const useStore = defineStore({
       this.counter++;
     },
     async login(login, password) {
-      this.loading = true
+      this.loading = true;
       axios
         .post("http://localhost:1337/api/auth/local", {
           identifier: login,
@@ -35,7 +35,7 @@ export const useStore = defineStore({
           localStorage.password = password;
           this.isAuth = false;
           console.log(this.state);
-          this.loading = false
+          this.loading = false;
         })
         .catch((error) => {
           // Handle error.
@@ -44,7 +44,7 @@ export const useStore = defineStore({
             type: "error",
             message: "Ошибка!!!",
           });
-          this.loading = false
+          this.loading = false;
         });
     },
     logout() {

@@ -1,9 +1,6 @@
 <template>
   <div class="auth">
-    <img
-      src="@/assets/logo.svg"
-      alt="htf"
-    />
+    <img src="@/assets/logo.svg" alt="htf" />
     <div class="auth__form">
       <el-popover
         placement="left"
@@ -125,30 +122,31 @@ const logined = async () => {
     state.showName = false;
   } else {
     axios
-      .get(`http://localhost:1337/api/user-details?filters[email][$eq]=${state.login}&filters[password][$eq]=${state.password}`)
+      .get(
+        `http://localhost:1337/api/user-details?filters[email][$eq]=${state.login}&filters[password][$eq]=${state.password}`
+      )
       .then((response) => {
         const data = response.data.data;
         if (data.length === 0) {
           ElMessage({
             message: `Вы ввели неверный логин или пароль`,
-            type: 'error'
+            type: "error",
           });
-        }
-        else {
-          localStorage.email = data[0].attributes.email
-          localStorage.password = data[0].attributes.password
-          localStorage.name = data[0].attributes.name
-          store.isAuth = true
+        } else {
+          localStorage.email = data[0].attributes.email;
+          localStorage.password = data[0].attributes.password;
+          localStorage.name = data[0].attributes.name;
+          store.isAuth = true;
           ElMessage({
             message: `Добро пожаловать, ${data[0].attributes.name}!`,
             type: "success",
           });
-          router.push('/main')
+          router.push("/main");
         }
         console.log(data);
         ElMessage({
           message: `Добро пожаловать, ${response.data.user.username}!`,
-          type: 'success'
+          type: "success",
         });
       })
       .catch((error) => {
@@ -168,11 +166,11 @@ const register = () => {
   } else {
     axios
       .post("http://localhost:1337/api/user-details", {
-        data:{
+        data: {
           name: state.name,
           email: state.login,
           password: state.password,
-        }
+        },
       })
       .then(() => {
         ElMessage({
@@ -212,9 +210,9 @@ $main-color: #4ca24c;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #FEFEFE;
+  background-color: #fefefe;
 
-  h3{
+  h3 {
     font-weight: lighter;
     color: #525252;
     padding-bottom: 40px;
@@ -242,7 +240,7 @@ $main-color: #4ca24c;
 
   &__item {
     height: content-box;
-    background-color: #FEFEFE;
+    background-color: #fefefe;
     width: content-box;
     display: flex;
     flex-direction: column;
@@ -275,7 +273,7 @@ $main-color: #4ca24c;
   &__label {
     transition: $transition;
     cursor: text;
-    background-color: #FEFEFE;
+    background-color: #fefefe;
     align-self: flex-start;
     margin: -52px 0 22px 10px;
     z-index: 1000;

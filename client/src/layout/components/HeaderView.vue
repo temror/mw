@@ -2,14 +2,24 @@
   <div class="header">
     <div class="container">
       <div class="header__content">
-        <img src="@/assets/logo.svg" alt="logo" style="cursor: pointer" @click="$router.push('/main')">
+        <img
+          src="@/assets/logo.svg"
+          alt="logo"
+          style="cursor: pointer"
+          @click="$router.push('/main')"
+        />
         <ul class="header__navbar">
           <li>Куда идти?</li>
           <li>Зачем идти?</li>
           <li>А что там?</li>
         </ul>
-        <button v-if="!storage.email" @click="$router.push('/auth')">Войти</button>
-        <p v-if="storage.email" class="header__welcome">Здравствуйте, <br><b>{{storage.name}}</b>!</p>
+        <button v-if="!storage.email" @click="$router.push('/auth')">
+          Войти
+        </button>
+        <p v-if="storage.email" class="header__welcome">
+          Здравствуйте, <br /><b>{{ storage.name }}</b
+          >!
+        </p>
         <button v-if="storage.email" @click="logout">Выйти</button>
       </div>
     </div>
@@ -19,7 +29,7 @@
 <script setup>
 import { useStore } from "../../stores/counter";
 import { useRouter } from "vue-router";
-import {computed} from "vue";
+import { computed } from "vue";
 
 const store = useStore();
 const router = useRouter();
@@ -35,19 +45,19 @@ const logout = () => {
 </script>
 
 <style lang="scss" scoped>
-.header{
+.header {
   padding: 30px;
-  background-color: #FEFEFE;
-  &__content{
+  background-color: #fefefe;
+  &__content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    a{
+    a {
       color: #e2e8e2;
       padding: 10px;
       text-decoration: none;
     }
-    button{
+    button {
       background-color: #4ca24c;
       color: white;
       padding: 10px 20px;
@@ -59,24 +69,24 @@ const logout = () => {
       cursor: pointer;
       transition: 0.1s;
     }
-    button:hover{
+    button:hover {
       opacity: 0.8;
       transition: 0.1s;
     }
   }
-  &__navbar{
+  &__navbar {
     display: flex;
-    color: #1E1E1E;
+    color: #1e1e1e;
     font-family: "Roboto Light", sans-serif;
     font-size: 24px;
     list-style-type: none;
-    li{
+    li {
       padding: 0 20px;
       cursor: pointer;
     }
   }
-  &__welcome{
-    color: #1E1E1E;
+  &__welcome {
+    color: #1e1e1e;
     font-family: "Roboto Regular", sans-serif;
     font-size: 16px;
     line-height: 24px;
