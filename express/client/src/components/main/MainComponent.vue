@@ -5,6 +5,12 @@
         <div class="main__title">
           Решает вечную проблему, куда же пойти погулять
         </div>
+        <input type="text" v-model="state.mes" /><button @click="send">
+        Отправить
+      </button>
+        <ul>
+          <li v-for="mes in state.messages">{{mes}}</li>
+        </ul>
         <div class="main__subtitle">
           Ваш персональный гид по Москве, рассказывающий всякое интересное
         </div>
@@ -101,6 +107,7 @@
           v-model="state.surname"
         />
         <button @click="addUser">Добавить</button>
+        <button @click="easyFetch">Fetch</button>
       </div>
     </div>
   </div>
@@ -111,12 +118,17 @@ import axios from "axios";
 import { useStore } from "@/stores/counter";
 import GoComponent from "@/components/main/GoComponent";
 import { onMounted, reactive } from "vue";
+import { io } from "socket.io-client";
+
+const socket = io("ws://localhost:3010");
 
 const store = useStore();
 const state = reactive({
   users: [],
   name: "",
   surname: "",
+  mes: "",
+  messages: []
 });
 
 const getPlases = async () => {
@@ -148,6 +160,18 @@ const addUser = async () => {
   state.surname = ''
   await getUsers();
 };
+
+const send = () => {
+  socket.emit("on server", state.mes);
+  state.mes = "";
+};
+socket.on("on client", function (msg) {
+  state.messages.push(msg)
+});
+
+const easyFetch = async () =>{
+  await axios.get('http://localhost:3010')
+}
 
 onMounted(async () => {
   await getUsers();
