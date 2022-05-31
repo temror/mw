@@ -1,7 +1,7 @@
 const {Sequelize, DataTypes} = require('sequelize')
 
 const sequelize = new Sequelize(
-    'seq',
+    'new_db',
     'user1',
     'root',
     {
@@ -26,7 +26,7 @@ const User = sequelize.define(
         // Здесь определяются другие настройки модели
     }
 )
-const Post = sequelize.define(
+const Place = sequelize.define(
     'Post',
     {
         // Здесь определяются атрибуты модели
@@ -35,14 +35,22 @@ const Post = sequelize.define(
             allowNull: false,
         },
         text: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             // allowNull по умолчанию имеет значение true
-        },
+        }
     },
     {
         // Здесь определяются другие настройки модели
     }
 )
+const UserPosts = sequelize.define('User_Post',{
+    visited: DataTypes.BOOLEAN
+})
+
+
+User.belongsToMany(Place, { through: 'User_Post' })
+Place.belongsToMany(User, { through: 'User_Post' })
+
 
 sequelize.sync({ force: true })
 
