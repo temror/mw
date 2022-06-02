@@ -22,8 +22,9 @@ db.sequelize = sequelize;
 db.user = require("../models/User")(sequelize, Sequelize);
 db.place = require("../models/Place")(sequelize, Sequelize);
 db.user_place = require("../models/User_Places")(sequelize, Sequelize);
+db.image = require("../models/Image")(sequelize, Sequelize)
 
-db.user.belongsToMany(db.place, { through: 'User_Places' })
-db.place.belongsToMany(db.user, { through: 'User_Places' })
+db.place.hasMany(db.image)
+db.image.belongsTo(db.place)
 
 module.exports = db

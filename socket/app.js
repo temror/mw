@@ -15,8 +15,8 @@ app.get('/', (req, res) => {
 app.use(cors())
 
 io.on('connection', (socket) => {
-    socket.on('on server', (msg) => {
-        io.emit('on client', msg);
+    socket.on('on strapi', (msg) => {
+        io.emit('on admin', msg);
     });
     console.log('a user connected');
     socket.on('disconnect', () => {

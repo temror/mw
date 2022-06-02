@@ -12,7 +12,7 @@ app.use(bodyParser.json({limit: '50mb', extended: true}));
 app.use(bodyParser.urlencoded({ extended: true }));
 // simple route
 const db = require("./models");
-db.sequelize.sync({force: true});
+db.sequelize.sync();
 
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to bezkoder application." });

@@ -1,30 +1,22 @@
 {
-  "name": "server",
-  "private": true,
-  "version": "0.1.0",
-  "description": "A Strapi application",
+  "name": "sequelize",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev": "strapi develop",
-    "start": "strapi start",
-    "build": "strapi build",
-    "strapi": "strapi"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@strapi/strapi": "4.1.9",
-    "@strapi/plugin-users-permissions": "4.1.9",
-    "@strapi/plugin-i18n": "4.1.9",
-    "better-sqlite3": "7.4.6"
-  },
-  "author": {
-    "name": "A Strapi developer"
-  },
-  "strapi": {
-    "uuid": "da3ea06f-94d3-4ceb-a0fe-0a822178654e"
-  },
-  "engines": {
-    "node": ">=12.x.x <=16.x.x",
-    "npm": ">=6.0.0"
-  },
-  "license": "MIT"
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.20.0"
+  }
 }
