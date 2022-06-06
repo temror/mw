@@ -12,7 +12,7 @@
           <div class="auth__item">
             <input
               ref="login"
-              v-model="state.login"
+              v-model="state.username"
               name="login"
               type="text"
               class="auth__input"
@@ -39,7 +39,7 @@
           <div class="auth__item">
             <input
               ref="name"
-              v-model="state.name"
+              v-model="state.email"
               name="name"
               type="text"
               class="auth__input"
@@ -50,7 +50,7 @@
               :class="{ focus: focusName }"
               @click="$refs.name.focus()"
             >
-              Введите ваше имя
+              Введите почту
             </p>
           </div>
         </template>
@@ -84,7 +84,6 @@
       <div class="auth__buttons">
         <button @click="logined">ВОЙТИ</button>
         <button @click="register">РЕГИСТРАЦИЯ</button>
-        <button @click="showData">РЕГИСТРАЦИЯ</button>
       </div>
     </div>
   </div>
@@ -105,18 +104,18 @@ const showData = () =>{
 }
 
 const state = reactive({
-  login: "",
-  name: "",
+  username: "",
+  email: "",
   password: "",
   showName: false,
   label: true,
 });
 
 const focusLogin = computed(() => {
-  return state.login !== "";
+  return state.username !== "";
 });
 const focusName = computed(() => {
-  return state.name !== "";
+  return state.email !== "";
 });
 const focusPassword = computed(() => {
   return state.password !== "";
@@ -126,18 +125,28 @@ const logined = async () => {
   if (state.showName) {
     state.showName = false;
   } else {
-    const data = JSON.stringify({
-      username: "Artem",
-      email: state.login,
-      password: state.password
-    })
-    const res = await axios.post("api/auth/signup", {
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      data : data
-    });
-    console.log(res)
+    try{
+      const res = await axios({
+        url: "api/auth/signin",
+        method: "post",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        data : {
+          username: state.username,
+          password: state.password
+        }
+      });
+      localStorage.username = res.data.username
+      localStorage.token = res.data.accessToken
+      await router.push('/main')
+    }
+    catch (e) {
+      ElMessage({
+        message: e.response.data.message,
+        type: "error"
+      })
+    }
     /*
     ElMessage({
       message: `Вы ввели неверный логин или пароль`,
@@ -150,19 +159,30 @@ const register = async () => {
   if (!state.showName) {
     state.showName = true;
   } else {
-    const res = await axios({
-      url: "api/auth/signup",
-      method: "post",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      data: {
-        username: state.name,
-        email: state.login,
-        password: state.password
-      }
-    });
-    console.log(res)
+    try{
+      const res = await axios({
+        url: "api/auth/signup",
+        method: "post",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        data: {
+          username: state.username,
+          email: state.email,
+          password: state.password
+        }
+      });
+      ElMessage({
+        message: res.data.message,
+        type: "success"
+      })
+    }
+    catch (e){
+      ElMessage({
+        message: e.response.data.message,
+        type: "error"
+      })
+    }
   }
 };
 </script>

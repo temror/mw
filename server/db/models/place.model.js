@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
     return sequelize.define(
-        'Place',
+        'place',
         {
             // Здесь определяются атрибуты модели
             title: {

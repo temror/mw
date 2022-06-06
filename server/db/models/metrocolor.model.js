@@ -1,19 +1,23 @@
 module.exports = (sequelize, Sequelize) => {
     return sequelize.define(
-        'User',
+        'metrocolor',
         {
             // Здесь определяются атрибуты модели
-            firstName: {
+            title: {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-            lastName: {
+            color: {
                 type: Sequelize.STRING,
-                // allowNull по умолчанию имеет значение true
+                allowNull: false
             },
+            number:{
+                type: Sequelize.STRING,
+                allowNull: false
+            }
         },
         {
             timestamps: false,
         }
-        );
+    );
 };

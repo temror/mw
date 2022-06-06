@@ -11,6 +11,12 @@
           <p>Описание</p>
           <textarea type="text" v-model="state.text"></textarea>
         </div>
+        <div class="admin__stations">
+          <select name="" id="">
+            <option v-for="s in state.stations" value="" @click="()=>{addStation(s)}">{{s.title}}</option>
+          </select>
+          <p v-for="s in state.selectedStations">{{s.title}}</p>
+        </div>
       </div>
       <div class="admin__buttons">
         <input type="file" ref="file" hidden @change="show" multiple accept="image/png,image/jpeg,image/jpg">
@@ -43,7 +49,7 @@
 
 <script setup>
 
-import {computed, reactive, ref} from "vue";
+import {computed, onMounted, reactive, ref} from "vue";
 import axios from "axios";
 
 const file = ref(null)
@@ -53,11 +59,17 @@ const state = reactive({
   title: '',
   text: '',
   imgs: [],
+  stations: [],
+  selectedStations: [],
   loading: false,
   showBig: false,
   bigImg: '',
   bigImgInd: 0
 })
+
+const addStation = station =>{
+  state.selectedStations.push(station)
+}
 
 const show = e => {
   const imgs = [...e.target.files]
@@ -78,7 +90,8 @@ const create = async () => {
     body: {
       title: state.title,
       text: state.text,
-      images: state.imgs
+      images: state.imgs,
+      stations: state.selectedStations
     }
   })
   console.log(create)
@@ -109,6 +122,11 @@ const changeImg = p => {
     p.image = reader.result
   }
 }
+
+onMounted(async ()=>{
+  const stations = await axios.get('/api/stations')
+  state.stations = [...stations.data.stations]
+})
 
 /*onMounted(async () => {
   state.loading = true
@@ -285,6 +303,20 @@ const changeImg = p => {
   &__next:hover{
     transition: 0.3s;
     background-color: rgba(1,1,1,0.3);
+  }
+  &__stations{
+    select{
+      padding: 10px 30px;
+      margin: 20px 0;
+      font-size: 20px;
+      background-color: #232323;
+      border: none;
+      box-shadow: 0 0 1px rgba(1, 1, 1, 0.5);
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: lighter;
+      color: #f8f8f8;
+    }
   }
 }
 </style>

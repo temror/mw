@@ -13,14 +13,14 @@
           <li>Зачем идти?</li>
           <li>А что там?</li>
         </ul>
-        <button v-if="!storage.email" @click="$router.push('/auth')">
+        <button v-if="!storage.username" @click="$router.push('/auth')">
           Войти
         </button>
-        <p v-if="storage.email" class="header__welcome">
-          Здравствуйте, <br /><b>{{ storage.name }}</b
+        <p v-if="storage.username" class="header__welcome">
+          Здравствуйте, <br /><b>{{ storage.username }}</b
           >!
         </p>
-        <button v-if="storage.email" @click="logout">Выйти</button>
+        <button v-if="storage.username" @click="logout">Выйти</button>
       </div>
     </div>
   </div>
@@ -39,7 +39,7 @@ const storage = computed(() => {
 });
 
 const logout = () => {
-  store.logout();
+  localStorage.clear();
   router.go(0);
 };
 </script>

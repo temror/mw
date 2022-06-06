@@ -14,8 +14,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const db = require("./db");
 const initial = require("./db/initial")
-db.sequelize.sync().then(()=>{
-   //initial()
+db.sequelize.sync({force: true}).then(()=>{
+   initial()
 });
 
 app.get("/", (req, res) => {
@@ -24,7 +24,6 @@ app.get("/", (req, res) => {
 require('./routes/place.routes')(app);
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
-require('./routes/station.routes')(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8000;
 

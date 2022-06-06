@@ -1,6 +1,7 @@
-const db = require("../models");
+const db = require("../db");
 
 const Place = db.place
+const Station = db.station
 const User = db.user
 const Image = db.image
 
@@ -12,7 +13,7 @@ exports.getPlaces = async (req, res) => {
 }
 exports.createPlace = async (req, res) => {
     try {
-        const {title,text,images} = req.body.body
+        const {title,text,images,stations} = req.body.body
         const place = await Place.create({ title, text})
         let imagesArr = []
         for(let i =0;i<images.length;i++){
@@ -20,6 +21,10 @@ exports.createPlace = async (req, res) => {
             imagesArr.push(image)
         }
         await place.addImages(imagesArr)
+        for (const s of stations) {
+            const station = await Station.findOne({where:{id: s.id}})
+            place.addStation(station)
+        }
         res.status(200).send({
             mes: await Place.findAll({include: {all: true}})
         })

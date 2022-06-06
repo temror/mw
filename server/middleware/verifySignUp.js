@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../db");
 const ROLES = db.ROLES;
 const User = db.user;
 checkDuplicateUsernameOrEmail = (req, res, next) => {
@@ -10,7 +10,7 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
     }).then(user => {
         if (user) {
             res.status(400).send({
-                message: "Failed! Username is already in use!"
+                message: "Пользователь с таким именем уже существует!"
             });
             return;
         }
@@ -22,13 +22,21 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
         }).then(user => {
             if (user) {
                 res.status(400).send({
-                    message: "Failed! Email is already in use!"
+                    message: "Пользователь с таким email уже существует!"
+                });
+                return;
+            }
+            const valid = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+            if(!valid.test(String(req.body.email).toLowerCase())){
+                res.status(400).send({
+                    message: "Введите правильный email."
                 });
                 return;
             }
             next();
         });
     });
+
 };
 checkRolesExisted = (req, res, next) => {
     if (req.body.roles) {

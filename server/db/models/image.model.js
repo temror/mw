@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
     return sequelize.define(
-        'Image',
+        'image',
         {
             image: {
                 type: Sequelize.BLOB('long')

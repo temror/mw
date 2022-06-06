@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
     return sequelize.define(
-        'User_Places',
+        'user_place',
         {
             visited: {
                 type: Sequelize.BOOLEAN,

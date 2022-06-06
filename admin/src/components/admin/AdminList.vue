@@ -5,8 +5,9 @@
       <div class="place" v-for="place in state.places">
         <h2 class="place__title">{{place.title}}</h2>
         <p class="place__text">{{place.text}}</p>
+        <p><span v-for="s in place.stations">{{s.title}}</span></p>
         <div class="list__images">
-          <img class="list__image" v-for="img in place.Images" :src="`${img.image}`" alt=""/>
+          <img class="list__image" v-for="img in place.images" :src="`${img.image}`" alt=""/>
         </div>
       </div>
     </div>
@@ -18,14 +19,15 @@ import {onMounted, reactive} from "vue";
 import axios from "axios";
 
 const state = reactive({
-  places: []
+  places: [],
+  stations: []
 })
 
 onMounted(async ()=>{
   const places = await axios.get('/api/places')
   state.places = [...places.data.places]
   state.places.forEach(p=>{
-    p.Images.forEach(p=>{
+    p.images.forEach(p=>{
       const i = new Uint8Array(p.image.data)
       const blob = new Blob([i], {type: 'text/plain'})
       const reader = new FileReader()
@@ -35,7 +37,7 @@ onMounted(async ()=>{
       }
     })
   })
-  console.log(state.places)
+  console.log(places)
 })
 </script>
 
